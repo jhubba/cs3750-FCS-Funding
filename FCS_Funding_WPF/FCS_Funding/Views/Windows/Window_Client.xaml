@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="CreateNewPatient" Width="900" Height="709" MinHeight="100" MinWidth="500"  x:Name="ThisWindow" SizeToContent="WidthAndHeight">
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto">
-        <TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="18" >
+        <TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="19" >
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -67,7 +67,8 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock Name="textblock_Title" Text="Create New Client" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="4" FontFamily="Razer Header Regular" Margin="0,0,0,5" Grid.RowSpan="2" TextDecorations="Underline" FontWeight="Bold" Grid.Column="1" />
-                    <TextBlock Name="txtClientOQ" Text="Client OQ Number:  " TextAlignment="Right"  FontSize="18" Grid.Row="3" Grid.Column="1" Margin="0,5" Visibility="Hidden"/> <!--remove after refactoring add client-->
+                    <TextBlock Name="txtClientOQ" Text="Client OQ Number:  " TextAlignment="Right"  FontSize="18" Grid.Row="3" Grid.Column="1" Margin="0,5" Visibility="Hidden"/>
+                    <!--remove after refactoring add client-->
                     <Border Grid.Row="3" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3" Visibility="Hidden">
                         <!--remove after refactoring add client-->
                         <TextBox Name="textbox_ClientOQ"  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="1" Visibility="Hidden" />
@@ -107,8 +108,6 @@
                         <ComboBoxItem >70+</ComboBoxItem>
                     </ComboBox>
 
-
-
                     <TextBlock Text="Ethnicity:  " TextAlignment="Right"  FontSize="18" Grid.Row="7" Grid.Column="1" Margin="0,5" />
                     <ComboBox Name="combobox_ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
                   HorizontalContentAlignment="Center" Width="190" Height="40"  Grid.Column="2" Grid.Row="7" FontSize="20" Margin="4.667,0,4.667,2" Grid.RowSpan="1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="6">
@@ -120,25 +119,41 @@
                         <ComboBoxItem >Hispanic</ComboBoxItem>
                         <ComboBoxItem >Other</ComboBoxItem>
                     </ComboBox>
+                    
                     <TextBlock Text="Client Creation Date:  " TextAlignment="Right"  FontSize="18" Grid.Row="8" Grid.Column="1" Margin="0,5" />
+                    
                     <DatePicker Name="date_ClientCreationDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
 						HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="8" FontSize="20" Grid.ColumnSpan="3" Height="34" />
 
-                    <CheckBox Name="check_HeadOfHousehold" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,10,0,4" Height="26" Width="178" KeyDown="useEnterAsTab" TabIndex="7">
+                    <CheckBox Name="check_HeadOfHousehold" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,10,0,4" Height="26" Width="178" KeyDown="useEnterAsTab" TabIndex="7">
                         <TextBlock Name="block_HeadOfHousehold" Text="Head of Household" FontSize="18" />
                     </CheckBox>
-                    <CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9">
-                        <TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" />
+                    
+                    <CheckBox Name= "check_MemberOfHousehold" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30" Width='210' KeyDown="useEnterAsTab" TabIndex="8" Margin="0.5,5,0,5" Grid.ColumnSpan="2">
+                        <TextBlock Name="block_MemberOfHousehold" Text="Member of Household" FontSize="18" />
                     </CheckBox>
+                    
+                    <CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9" Visibility="Hidden"><!--remove after refactoring-->
+                        <TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" /><!--remove after refactoring-->
+                    </CheckBox> <!--remove after refactoring-->
+
+                    <TextBlock Text="Search for Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="13" Grid.Column="1" Margin="0,5" />
+
+                    <Border Grid.Row="13" Grid.Column="2"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+                        <TextBox Name="search_HeadOfHousehold" FontSize="18" KeyDown="useEnterAsTab" TextChanged="CheckForValidInput" />
+                    </Border>
+                    
+                    <Button Name="button_SearchHeadOfHousehold" Grid.Column="2" Grid.Row="14" FontSize="18" Content="Search" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,5" Click="button_SearchHeadOfHousehold_Click"/>
+
                     <CheckBox Name="check_ChangeHousehold"  Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_Household" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="300">
                         <TextBlock Name="block_ChangeHousehold" Text="Change Household" FontSize="18" />
                     </CheckBox>
                     <CheckBox Name="check_UpdateHousehold" Grid.Column="4" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_UpdateHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="3016">
                         <TextBlock Name="block_UpdateHousehold" Text="Update Household" FontSize="18" />
                     </CheckBox>
-                    <TextBlock Text="Family Member OQ Number:  " TextAlignment="Center" FontSize="18" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <Border Grid.Row="13" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Grid.ColumnSpan="1" Margin="0,3">
-                        <TextBox Name="textbox_FamilyMemberOQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="10"/>
+                    <TextBlock Text="Family Member OQ Number:  " TextAlignment="Center" FontSize="18" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Hidden"/><!--remove after refactoring-->
+                    <Border Grid.Row="13" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Grid.ColumnSpan="1" Margin="0,3" Visibility="Hidden"><!--Remove after refactoring-->
+                        <TextBox Name="textbox_FamilyMemberOQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="10" Visibility="Hidden"/><!--Remove after refactoring-->
                     </Border>
                     <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="5,0,0,0"
 		  VerticalAlignment="Top" Height="236" Width="352" Grid.ColumnSpan="2" Grid.RowSpan="6" Grid.Column="3" Grid.Row="3" TabIndex="11">
@@ -177,6 +192,7 @@
                     <Border Grid.Row="11" Grid.Column="4"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" >
                         <TextBox Name="textbox_HouseholdPopulation" FontSize="18"  Text="{Binding HouseholdPopulation, ElementName=ThisWindow}" PreviewTextInput="txt_NumberOnlyCheck" IsEnabled="False" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="30"/>
                     </Border>
+                    
                     <TextBlock Text="County:  " TextAlignment="Right" FontSize="18" Grid.Row="12" Grid.Column="3" Height="30" Padding="83, 0, 0, 0"/>
 
                     <ComboBox Name="combobox_County" IsReadOnly="True" HorizontalAlignment="Center" 
@@ -189,7 +205,9 @@
                         <ComboBoxItem >Box Elder</ComboBoxItem>
                         <ComboBoxItem >Other</ComboBoxItem>
                     </ComboBox>
+                    
                     <TextBlock Text="Income Bracket:" TextAlignment="Right" FontSize="18" Grid.Row="13" Grid.Column="3" Height="30" Padding="23, 0, 0, 0"/>
+                
                     <ComboBox Name="combobox_IncomeBracket" IsReadOnly="True" HorizontalAlignment="Center" 
                   VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="190" Height="40" Grid.Column="4" 
                   Grid.Row="13" FontSize="20" IsEnabled="False" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="32">
@@ -200,10 +218,11 @@
                         <ComboBoxItem >$35,000+</ComboBoxItem>
                     </ComboBox>
 
-                    <Button Name="button_CancelClient" FontSize="18" Grid.Column="4" Grid.Row="15" Content="Cancel" Grid.ColumnSpan="1" Margin="10,0,0,0" Click="Close_Window" TabIndex="34" Height="50" Width="100" />
-                    <Button Name="button_AddUpdateClient"  FontSize="18" Grid.Column="2" Grid.Row="15" Content="Add" Grid.ColumnSpan="1" Margin="0,0,10,0" IsEnabled="False" TabIndex="33" Height="50" Width="100" />
-                    <Button Name="button_DeleteClient" FontSize="18" Grid.Column="3" Grid.Row="15" Content="Delete" Click="Delete_Client" Margin="0,0,10,0"  Height="50" Width="100"  />
+                    <Button Name="button_CancelClient" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Cancel" Grid.ColumnSpan="1" Margin="10,0,0,0" Click="Close_Window" TabIndex="34" Height="50" Width="100" />
+                    <Button Name="button_AddUpdateClient"  FontSize="18" Grid.Column="2" Grid.Row="16" Content="Add" Grid.ColumnSpan="1" Margin="0,0,10,0" IsEnabled="False" TabIndex="33" Height="50" Width="100" />
+                    <Button Name="button_DeleteClient" FontSize="18" Grid.Column="3" Grid.Row="16" Content="Delete" Click="Delete_Client" Margin="0,0,10,0"  Height="50" Width="100"  />
                 </Grid>
+                
             </TabItem>
             <TabItem Name="tab_ClientSessions"  Header="Client Sessions" Height="30">
                 <Grid>

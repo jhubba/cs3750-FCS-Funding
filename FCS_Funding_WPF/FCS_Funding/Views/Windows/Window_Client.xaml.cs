@@ -695,5 +695,10 @@ namespace FCS_Funding.Views.Windows
 		{
 			CommonControl.IntepretEnterAsTab(sender, e);
 		}
-	}
+
+        private void button_SearchHeadOfHousehold_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }

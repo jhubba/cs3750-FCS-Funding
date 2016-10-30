@@ -1143,6 +1143,7 @@ namespace FCS_Funding.Views.UserControls
             
 
                 //new stuff***************************************
+
                 await Task.Run(() =>
                 {
                     HtmlToPdf converter = new HtmlToPdf();
@@ -1155,8 +1156,14 @@ namespace FCS_Funding.Views.UserControls
                     PdfDocument doc = converter.ConvertHtmlString(toPrint, null);
 
                     //get temp path for report pdf
+                    long milliseconds = DateTime.Now.Ticks/TimeSpan.TicksPerMillisecond;
+
+                    
+
+                    string tempFileName = "tempReport" + milliseconds.ToString() + ".pdf";
+
                     var path = System.IO.Path.GetTempPath();
-                    var totalPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "tempReport.pdf");
+                    var totalPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), tempFileName);
 
                     doc.Save(totalPath);
 
@@ -1174,6 +1181,7 @@ namespace FCS_Funding.Views.UserControls
                     "Please pick a valid starting and ending date prior to clicking Generate Report");
             }
         }
+
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
 		{

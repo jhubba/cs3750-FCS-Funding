@@ -53,6 +53,7 @@ namespace FCS_Funding.Views.Windows
 		private string ageGroup { get; set; }
 		private string ethnicGroup { get; set; }
 
+      
 		//helper variables
 		List<ProbCheckBoxModel> problemItems = new List<ProbCheckBoxModel>();
 
@@ -66,17 +67,20 @@ namespace FCS_Funding.Views.Windows
 			HouseholdPopulation = 1;
 			FCS_DBModel db = new FCS_DBModel();
 
+            
 			//	For only adding clients
 			if (editPatient == null)
 			{
 				InitializeComponent();
-				check_UpdateHousehold.Visibility = Visibility.Hidden;
+                check_UpdateHousehold.Visibility = Visibility.Hidden;
 				check_ChangeHousehold.Visibility = Visibility.Hidden;
 				button_DeleteClient.Visibility = Visibility.Hidden;
 				tab_UpdateClient.IsSelected = true;
-				tab_UpdateClient.Visibility = Visibility.Collapsed;
+                textbox_RelationToHead.IsEnabled = false;
+                textbox_SearchHead.IsEnabled = false;
+                tab_UpdateClient.Visibility = Visibility.Collapsed;
 				tab_ClientSessions.Visibility = Visibility.Collapsed;
-
+                
 				button_CancelClient.SetValue(Grid.ColumnProperty, 3);
 
 				//	Add Client button stuff
@@ -117,13 +121,16 @@ namespace FCS_Funding.Views.Windows
 				patientOQ = editPatient.PatientOQ;
 				patientID = editPatient.PatientID;
 
-				InitializeComponent();
+               
+                InitializeComponent();
+               
 
-				//	Hide those UI items that shouldn't exist
-				textbox_FamilyMemberOQ.IsEnabled = false;
+                //	Hide those UI items that shouldn't exist
+                textbox_FamilyMemberOQ.IsEnabled = false;
 				textbox_ClientOQ.IsEnabled = false;
+                textbox_RelationToHead.IsEnabled = false;
 
-				check_FirstHouseholdMember.Visibility = Visibility.Hidden;
+                check_FirstHouseholdMember.Visibility = Visibility.Hidden;
 			
 			//	Manually set the rest of the data to be displayed
 				if (editPatient.IsHead)
@@ -170,6 +177,8 @@ namespace FCS_Funding.Views.Windows
 			Patient tempPatient = new Patient();
 			Problem tempProblem = new Problem();
 			FCS_DBModel db = new FCS_DBModel();
+
+            
 
 			//	Check to see if the OQ number is already taken
 			try
@@ -699,6 +708,22 @@ namespace FCS_Funding.Views.Windows
         private void button_SearchHeadOfHousehold_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void radio_isHead_Checked(object sender, RoutedEventArgs e)
+        {
+            var rb = sender as RadioButton;
+            if (rb.Name.Equals("radio_Dependent"))
+            {
+                textbox_RelationToHead.IsEnabled = true;
+                textbox_SearchHead.IsEnabled= true;
+            }
+
+            if (rb.Name.Equals("radio_Head"))
+            {
+                textbox_RelationToHead.IsEnabled = false;
+                textbox_SearchHead.IsEnabled = false;
+            }
         }
     }
 }

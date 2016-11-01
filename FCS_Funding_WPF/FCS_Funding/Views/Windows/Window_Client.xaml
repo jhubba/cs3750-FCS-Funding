@@ -1,7 +1,7 @@
 ﻿<Window x:Class="FCS_Funding.Views.Windows.Window_Client"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CreateNewPatient" Width="900" Height="709" MinHeight="100" MinWidth="500"  x:Name="ThisWindow" SizeToContent="WidthAndHeight">
+        Title="CreateNewPatient" Width="900" Height="900" MinHeight="100" MinWidth="500"  x:Name="ThisWindow" SizeToContent="WidthAndHeight">
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto">
         <TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="19" >
             <TabControl.Resources>
@@ -124,23 +124,28 @@
                     
                     <DatePicker Name="date_ClientCreationDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
 						HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="8" FontSize="20" Grid.ColumnSpan="3" Height="34" />
-
-                    <CheckBox Name="check_HeadOfHousehold" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,10,0,4" Height="26" Width="178" KeyDown="useEnterAsTab" TabIndex="7">
-                        <TextBlock Name="block_HeadOfHousehold" Text="Head of Household" FontSize="18" />
+           
+                    <StackPanel Grid.Column="2" Grid.Row="9" Margin="0,10">
+                        <RadioButton x:Name="radio_Head" GroupName="HeadOfHousehold" Margin="5" Checked="radio_isHead_Checked">Head of Household</RadioButton>
+                        <RadioButton x:Name="radio_Dependent" GroupName="HeadOfHousehold" Margin="5" Checked="radio_isHead_Checked">Dependent</RadioButton>
+                    </StackPanel>
+                    
+                    <CheckBox Name="check_HeadOfHousehold" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,10,0,4" Height="26" Width="178" KeyDown="useEnterAsTab" TabIndex="7" Visibility="Hidden"><!--remove after refactoring-->
+                        <TextBlock Name="block_HeadOfHousehold" Text="Head of Household" FontSize="18"  Visibility="Hidden"/> <!--remove after refactoring-->
                     </CheckBox>
                     
-                    <CheckBox Name= "check_MemberOfHousehold" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30" Width='210' KeyDown="useEnterAsTab" TabIndex="8" Margin="0.5,5,0,5" Grid.ColumnSpan="2">
-                        <TextBlock Name="block_MemberOfHousehold" Text="Member of Household" FontSize="18" />
+                    <CheckBox Name= "check_MemberOfHousehold" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30" Width='210' KeyDown="useEnterAsTab" TabIndex="8" Margin="0.5,5,0,5" Grid.ColumnSpan="2" Visibility="Hidden"><!--remove after refactoring-->
+                        <TextBlock Name="block_MemberOfHousehold" Text="Member of Household" FontSize="18" Visibility="Hidden" /> <!--Remove after refactoring-->
                     </CheckBox>
                     
-                    <CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9" Visibility="Hidden"><!--remove after refactoring-->
+                    <CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9"><!--remove after refactoring-->
                         <TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" /><!--remove after refactoring-->
                     </CheckBox> <!--remove after refactoring-->
 
                     <TextBlock Text="Search for Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="13" Grid.Column="1" Margin="0,5" />
 
                     <Border Grid.Row="13" Grid.Column="2"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="search_HeadOfHousehold" FontSize="18" KeyDown="useEnterAsTab" TextChanged="CheckForValidInput" />
+                        <TextBox Name="textbox_SearchHead" FontSize="18" KeyDown="useEnterAsTab" TextChanged="CheckForValidInput" />
                     </Border>
                     
                     <Button Name="button_SearchHeadOfHousehold" Grid.Column="2" Grid.Row="14" FontSize="18" Content="Search" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,5" Click="button_SearchHeadOfHousehold_Click"/>

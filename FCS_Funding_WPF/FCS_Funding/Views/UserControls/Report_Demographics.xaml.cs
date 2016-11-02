@@ -1115,15 +1115,6 @@ namespace FCS_Funding.Views.UserControls
                 toPrint += "</body>"
                            + "</html>";
 
-                //OLD STUFF ***********************************************************************************************************************************
-                //System.Windows.Forms.WebBrowser newBrowser = new System.Windows.Forms.WebBrowser();
-                //newBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(PrintDocument);
-                //newBrowser.DocumentText = "<!DOCTYPE html><html><style>@page { size: landscape; margin: 0px;}</style></head><body>Test Yay!</body></html>";
-                //newBrowser.DocumentText = toPrint;
-                //**********************************************************************************************************************************************
-
-
-                ////new stuff***************************************
                 
                 //get pdf doc
                 string pdfPath = await Task.Run(() => GeneratePdfDoc());
@@ -1135,12 +1126,11 @@ namespace FCS_Funding.Views.UserControls
                 }
                 catch (Exception)
                 {
+                    //failed to find reader
                     System.Windows.MessageBox.Show("Install a PDF reader and make it your default");
                 }
                 
-
                 EnableButton(true, "Generate Report");
-                ////******************************************************
             }
             else
             {
@@ -1160,11 +1150,10 @@ namespace FCS_Funding.Views.UserControls
 
             PdfDocument doc = converter.ConvertHtmlString(toPrint, null);
 
-            //get temp path for report pdf
+            //build temporary path for pdf
+
+            //add milliseconds to path to make it "unique"
             long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-
-
-
             string tempFileName = "tempReport" + milliseconds.ToString() + ".pdf";
 
             var path = System.IO.Path.GetTempPath();

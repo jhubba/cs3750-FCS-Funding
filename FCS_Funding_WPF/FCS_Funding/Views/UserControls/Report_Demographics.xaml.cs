@@ -1,32 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using FCS_Funding.Views;
-using FCS_DataTesting;
-using System.Collections.ObjectModel;
 using FCS_Funding.Models;
-using System.Data;
-using System.Data.Objects.SqlClient;
-using System.Data.Entity;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.IO;
-using System.Threading;
 using System.Windows.Forms;
-using HtmlAgilityPack;
-using Color = System.Drawing.Color;
 using SelectPdf;
 
 namespace FCS_Funding.Views.UserControls
@@ -65,8 +45,9 @@ namespace FCS_Funding.Views.UserControls
         private async void button_Click(object sender, RoutedEventArgs e)
         {
             btn = (System.Windows.Controls.Button) sender;
-            btn.Content = "Please Wait";
-            btn.IsEnabled = false;
+
+            //disable button while generating report
+            EnableButton(false, "Please Wait");
 
             if (demographicsReportFrom_datepicker.SelectedDate != null &&
                 demographicsReportFrom_datepicker.SelectedDate.GetValueOrDefault() != DateTime.MinValue &&
@@ -901,7 +882,7 @@ namespace FCS_Funding.Views.UserControls
 					}*/
                     totalMinutesofClientService +=
                         session.appointmentDateTimeEnd.Subtract(session.appointmentDateTimeStart).TotalMinutes;
-                        //Cannot add hours because sessions less than 1 hour will not be tallied.
+                    //Cannot add hours because sessions less than 1 hour will not be tallied.
                 }
 
 
@@ -1140,46 +1121,64 @@ namespace FCS_Funding.Views.UserControls
                 //newBrowser.DocumentText = "<!DOCTYPE html><html><style>@page { size: landscape; margin: 0px;}</style></head><body>Test Yay!</body></html>";
                 //newBrowser.DocumentText = toPrint;
                 //**********************************************************************************************************************************************
-            
 
-                //new stuff***************************************
 
-                await Task.Run(() =>
+                ////new stuff***************************************
+                
+                //get pdf doc
+                string pdfPath = await Task.Run(() => GeneratePdfDoc());
+
+                //open pdf in default reader
+                try
                 {
-                    HtmlToPdf converter = new HtmlToPdf();
+                    Process.Start(pdfPath);
+                }
+                catch (Exception)
+                {
+                    System.Windows.MessageBox.Show("Install a PDF reader and make it your default");
+                }
+                
 
-                    converter.Options.PdfPageSize = PdfPageSize.A3;
-                    converter.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
-                    converter.Options.WebPageWidth = 1024;
-                    converter.Options.WebPageHeight = 0;
-
-                    PdfDocument doc = converter.ConvertHtmlString(toPrint, null);
-
-                    //get temp path for report pdf
-                    long milliseconds = DateTime.Now.Ticks/TimeSpan.TicksPerMillisecond;
-
-                    
-
-                    string tempFileName = "tempReport" + milliseconds.ToString() + ".pdf";
-
-                    var path = System.IO.Path.GetTempPath();
-                    var totalPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), tempFileName);
-
-                    doc.Save(totalPath);
-
-                    //open pdf in default pdf reader
-                    Process.Start(totalPath);
-                });
-
-                btn.Content = "Generate Report";
-                btn.IsEnabled = true;
-                //******************************************************
+                EnableButton(true, "Generate Report");
+                ////******************************************************
             }
             else
             {
                 System.Windows.MessageBox.Show(
                     "Please pick a valid starting and ending date prior to clicking Generate Report");
             }
+        }
+
+        private string GeneratePdfDoc()
+        {
+            HtmlToPdf converter = new HtmlToPdf();
+
+            converter.Options.PdfPageSize = PdfPageSize.Letter;
+            converter.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
+            converter.Options.WebPageWidth = 1024;
+            converter.Options.WebPageHeight = 0;
+
+            PdfDocument doc = converter.ConvertHtmlString(toPrint, null);
+
+            //get temp path for report pdf
+            long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+
+
+
+            string tempFileName = "tempReport" + milliseconds.ToString() + ".pdf";
+
+            var path = System.IO.Path.GetTempPath();
+            var totalPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), tempFileName);
+
+            doc.Save(totalPath);
+
+            return totalPath;
+        }
+
+        private void EnableButton(bool enabled, string content)
+        {
+            btn.IsEnabled = enabled;
+            btn.Content = content;
         }
 
 
@@ -1350,9 +1349,7 @@ namespace FCS_Funding.Views.UserControls
 		{
 		    System.Windows.Forms.WebBrowser wb = (System.Windows.Forms.WebBrowser)sender;
 
-		    
-
-            wb.ShowPrintPreviewDialog();
+		    wb.ShowPrintPreviewDialog();
 		    
 		} 
     }

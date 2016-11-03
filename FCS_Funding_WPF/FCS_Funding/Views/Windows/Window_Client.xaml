@@ -138,8 +138,8 @@
                         <TextBlock Name="block_MemberOfHousehold" Text="Member of Household" FontSize="18" Visibility="Hidden" /> <!--Remove after refactoring-->
                     </CheckBox>
                     
-                    <CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9"><!--remove after refactoring-->
-                        <TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" /><!--remove after refactoring-->
+                    <CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9" Visibility="Hidden"><!--remove after refactoring-->
+                        <TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" Visibility="Hidden" /><!--remove after refactoring-->
                     </CheckBox> <!--remove after refactoring-->
 
                     <TextBlock Text="Search for Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="13" Grid.Column="1" Margin="0,5" />

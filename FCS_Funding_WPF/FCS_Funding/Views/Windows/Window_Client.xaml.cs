@@ -202,7 +202,7 @@ namespace FCS_Funding.Views.Windows
             try
             {
 				//	Check to see if there needs to be a new household made first
-				if ((bool)check_FirstHouseholdMember.IsChecked)
+				if ((bool)radio_Head.IsChecked)
 				{
 					Income = combobox_IncomeBracket.Text;
 					County = combobox_County.Text;
@@ -218,6 +218,7 @@ namespace FCS_Funding.Views.Windows
 				}
 				else
 				{
+                    /*
 					try
 					{
 						tempPatient.HouseholdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
@@ -227,6 +228,7 @@ namespace FCS_Funding.Views.Windows
 						MessageBox.Show("The provided Family OQ Number does not exist. Please double-check the Family OQ Number.", "Family OQ Number Doesn't Exist", MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
+                    */
 				}
 
 				bool isHeadOfHouse = (bool)check_HeadOfHousehold.IsChecked;
@@ -636,16 +638,18 @@ namespace FCS_Funding.Views.Windows
 		{
 			try
 			{
-				if (textblock_Title.Text == "Add New Client")
+				if (radio_Head.IsChecked == true)
 				{
 					if (checkForPatientTextEntry() && checkForHeadOfHouseEntry() && checkForHouseholdEntryAddPatient())
 					{
 						int.Parse(textbox_HouseholdPopulation.Text);
 
+                        /*
 						if (!(bool)check_FirstHouseholdMember.IsChecked)
 						{
 							int.Parse(textbox_FamilyMemberOQ.Text);
 						}
+                        */
 
 						button_AddUpdateClient.IsEnabled = true;
 						return;
@@ -676,13 +680,13 @@ namespace FCS_Funding.Views.Windows
 
 			private bool checkForHeadOfHouseEntry()
 			{
-				return ((bool)check_HeadOfHousehold.IsChecked || !string.IsNullOrEmpty(textbox_RelationToHead.Text)) ? true : false;
+				return ((bool)radio_Head.IsChecked || !string.IsNullOrEmpty(textbox_RelationToHead.Text)) ? true : false;
 			}
 
 			private bool checkForHouseholdEntryAddPatient()
 			{
-					return (((bool)check_FirstHouseholdMember.IsChecked && !string.IsNullOrEmpty(textbox_HouseholdPopulation.Text))
-						|| !string.IsNullOrEmpty(textbox_FamilyMemberOQ.Text)) ? true : false;
+            return ((bool)radio_Head.IsChecked && !string.IsNullOrEmpty(textbox_HouseholdPopulation.Text));
+						//|| !string.IsNullOrEmpty(textbox_FamilyMemberOQ.Text)) ? true : false;
 			}
 
 			private bool checkForChangeHouseholdEntryEditPatient()
@@ -723,6 +727,11 @@ namespace FCS_Funding.Views.Windows
             {
                 textbox_RelationToHead.IsEnabled = false;
                 textbox_SearchHead.IsEnabled = false;
+                textbox_HouseholdPopulation.IsEnabled = true;
+                combobox_County.IsEnabled = true;
+                combobox_IncomeBracket.IsEnabled = true;
+                headOfHouse = true;
+                CheckForValidInput(sender, null);
             }
         }
     }

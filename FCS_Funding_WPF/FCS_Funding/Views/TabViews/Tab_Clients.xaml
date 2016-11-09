@@ -46,6 +46,7 @@
         <TextBox Name="textbox_Search" FontSize="18" Grid.Column="3" Height="39" Margin="0,0,1,0" Grid.ColumnSpan="2"/>
         
         <Button Grid.Column="5" Content="Filter" Click="Refresh_ClientGrid" Height="39"/>
+        
         <!-- <Button Content="Refresh" Click="Refresh_Patients"  Grid.Column="5" Grid.Row="1" />-->
         <DataGrid Name="PatientGrid" Grid.ColumnSpan="6" Grid.RowSpan="12" Loaded="Refresh_ClientGrid" CanUserResizeColumns="True"  
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient"

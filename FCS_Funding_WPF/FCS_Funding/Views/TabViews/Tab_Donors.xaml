@@ -17,6 +17,7 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="42" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
@@ -32,12 +33,14 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
-		<Button Name="CreateNewDon" Grid.Column="0" Content="Create New Donor" Click="Open_CreateNewDonor"   HorizontalAlignment="Left" Width="158" />
-		<Button Name="CreateNewPurpose" Grid.Column="1" Content="Create New Purpose" Click="Open_AddPurpose"   HorizontalAlignment="Left" Width="158" />
-		<TabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="16"  >
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        
+		<Button Name="CreateNewDon" Grid.Column="0" Content="Create New Donor" Click="Open_CreateNewDonor"   HorizontalAlignment="Left" Width="165" />
+		<Button Name="CreateNewPurpose" Grid.Column="1" Content="Create New Purpose" Click="Open_AddPurpose"   HorizontalAlignment="Left" Width="165" />
+        
+		<TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="16"  >
 			<TabControl.Resources>
 				<Style TargetType="TabItem">
 					<Setter Property="Template">
@@ -70,7 +73,7 @@
 						<RowDefinition Height="*" />
 						<RowDefinition Height="*" />
 						<RowDefinition Height="*" />
-						<RowDefinition Height="*"/>
+						<RowDefinition Height="*" />
 						<RowDefinition Height="*" />
 						<RowDefinition Height="*" />
 						<RowDefinition Height="*" />
@@ -84,11 +87,11 @@
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="167*"/>
-						<ColumnDefinition Width="33*"/>
+						<ColumnDefinition Width="33*" />
 						<ColumnDefinition Width="134*"/>
 						<ColumnDefinition Width="167*"/>
 						<ColumnDefinition Width="120*"/>
-						<ColumnDefinition Width="48*"/>
+						<ColumnDefinition Width="48*" />
 						<ColumnDefinition Width="167*"/>
 					</Grid.ColumnDefinitions>
 					<!--<TextBlock Grid.Column="0" Grid.Row="0" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />

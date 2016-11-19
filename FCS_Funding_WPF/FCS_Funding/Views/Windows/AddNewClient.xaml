@@ -107,7 +107,7 @@
                     </Border>
                     <TextBlock Text="Gender:  " TextAlignment="Right"  FontSize="18" Grid.Row="5" Grid.Column="1" Margin="0,5" />
                     <ComboBox Name="combobox_Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Width="190" Height="40"  Grid.Column="2" Grid.Row="5" FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="4">
+                  Width="190" Height="40"  Grid.Column="2" Grid.Row="5" FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="4" Text="{Binding PatientGender, ElementName=ThisWindow}">
                         <ComboBoxItem >Male</ComboBoxItem>
                         <ComboBoxItem >Female</ComboBoxItem>
                         <ComboBoxItem >Other</ComboBoxItem>
@@ -115,7 +115,7 @@
                     <TextBlock Text="Age Group:  " TextAlignment="Right"  FontSize="18" Grid.Row="6" Grid.Column="1" Margin="0,5" />
                     <ComboBox Name="combobox_AgeGroup"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
                   HorizontalContentAlignment="Center" Width="190" Height="40" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="6"
-				  FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="5">
+				  FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="5" Text="{Binding ageGroup, ElementName=ThisWindow}">
                         <ComboBoxItem >0-5</ComboBoxItem>
                         <ComboBoxItem >6-11</ComboBoxItem>
                         <ComboBoxItem >12-17</ComboBoxItem>
@@ -127,7 +127,7 @@
                     </ComboBox>
 
                     <TextBlock Text="Ethnicity:  " TextAlignment="Right"  FontSize="18" Grid.Row="7" Grid.Column="1" Margin="0,5" />
-                    <ComboBox Name="combobox_ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    <ComboBox Name="combobox_ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ethnicGroup, ElementName=ThisWindow}"
                   HorizontalContentAlignment="Center" Width="190" Height="40"  Grid.Column="2" Grid.Row="7" FontSize="20" Margin="4.667,0,4.667,2" Grid.RowSpan="1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="6">
                         <ComboBoxItem >African American</ComboBoxItem>
                         <ComboBoxItem >Native/Alaskan</ComboBoxItem>
@@ -141,7 +141,7 @@
                     <TextBlock Text="Client Creation Date:  " TextAlignment="Right"  FontSize="18" Grid.Row="8" Grid.Column="1" Margin="0,5" />
 
                     <DatePicker Name="date_ClientCreationDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
-						HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="8" FontSize="20" Grid.ColumnSpan="3" Height="34" />
+						HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="8" FontSize="20" Grid.ColumnSpan="3" Height="34"  />
 
                     <StackPanel Grid.Column="2" Grid.Row="9" Margin="0,10">
                         <RadioButton x:Name="radio_Head" GroupName="HeadOfHousehold" Margin="5" Checked="radio_isHead_Checked">Head of Household</RadioButton>
@@ -198,7 +198,7 @@
 
                     <ComboBox Name="combobox_County" IsReadOnly="True" HorizontalAlignment="Center" 
                   VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="190" Height="40" Grid.Column="4" 
-                  Grid.Row="12" FontSize="20" Margin="1,1,1,1" Grid.ColumnSpan="1" IsEnabled="False" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="31">
+                  Grid.Row="12" FontSize="20" Margin="1,1,1,1" Grid.ColumnSpan="1" IsEnabled="False" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="31" Text="{Binding County, ElementName=ThisWindow}">
                         <ComboBoxItem >Weber</ComboBoxItem>
                         <ComboBoxItem >Davis</ComboBoxItem>
                         <ComboBoxItem >DCLC</ComboBoxItem>
@@ -211,7 +211,7 @@
 
                     <ComboBox Name="combobox_IncomeBracket" IsReadOnly="True" HorizontalAlignment="Center" 
                   VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="190" Height="40" Grid.Column="4" 
-                  Grid.Row="13" FontSize="20" IsEnabled="False" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="32">
+                  Grid.Row="13" FontSize="20" IsEnabled="False" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="32" Text="{Binding Income, ElementName=ThisWindow}">
                         <ComboBoxItem >$0-9,999</ComboBoxItem>
                         <ComboBoxItem >$10,000-14,999</ComboBoxItem>
                         <ComboBoxItem >$15,000-24,000</ComboBoxItem>
@@ -220,7 +220,7 @@
                     </ComboBox>
 
                     <Button Name="button_CancelClient" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Cancel" Grid.ColumnSpan="1" Margin="10,0,0,0" Click="Close_Window" TabIndex="34" Height="50" Width="100" />
-                    <Button Name="button_AddUpdateClient"  FontSize="18" Grid.Column="3" Grid.Row="16" Content="Add" Grid.ColumnSpan="1" Margin="0,0,10,0" IsEnabled="True" TabIndex="33" Height="50" Width="100" />
+                    <Button Name="button_AddUpdateClient"  FontSize="18" Grid.Column="3" Grid.Row="16" Content="Add" Grid.ColumnSpan="1" Margin="0,0,10,0" IsEnabled="True" TabIndex="33" Height="50" Width="100" Click="button_AddUpdateClient_Click" />
 
                 </Grid>
 

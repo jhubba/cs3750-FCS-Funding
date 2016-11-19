@@ -21,15 +21,18 @@ namespace FCS_Funding.Views.Windows
 	using System.Windows.Controls.Primitives;
 	using Definition;
 	using FCS_DataTesting;
-	/// <summary>
-	/// Interaction logic for CreateNewPatient.xaml
-	/// </summary>
-	public class ProbCheckBoxModel
+    /// <summary>
+    /// Interaction logic for CreateNewPatient.xaml
+    /// </summary>
+    /// 
+
+/*
+    public class ProbCheckBoxModel
 	{
 		int PatientID { get; set; }
 		int ProblemID { get; set; }
 	}
-
+    */
 	/// <summary>
 	/// Interaction logic for Window_Client.xaml
 	/// </summary>
@@ -49,8 +52,7 @@ namespace FCS_Funding.Views.Windows
 		private string Income { get; set; }
 		public int HouseholdPopulation { get; set; }
 		public string County { get; set; }
-
-		private string ageGroup { get; set; }
+        private string ageGroup { get; set; }
 		private string ethnicGroup { get; set; }
 
       

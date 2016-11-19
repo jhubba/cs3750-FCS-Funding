@@ -56,11 +56,17 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
 		{
+
+            AddNewClient anc = new AddNewClient();
+            anc.ShowDialog();
+
+            /*
 			Window_Client ch = new Window_Client(StaffRole, null);
 			ch.combobox_Gender.SelectedIndex = 0;
 			ch.combobox_AgeGroup.SelectedIndex = 0;
 			ch.combobox_ethnicity.SelectedIndex = 0;
 			ch.ShowDialog();
+            */
 
 		//	Refresh the grid after closing the create new patient
 			Refresh_ClientGrid(sender, e);

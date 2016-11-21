@@ -36,7 +36,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Name="CreateGrantProp" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Content="Create Grant Proposal" Click="Open_CreateGrantProposal" Margin="0,0,0,0" />
+        <Button Name="CreateGrantProp" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Content="Create Grant Proposal" Click="Open_CreateGrantProposal" Margin="0,0,0,1" />
 
         <DataGrid Name="Grant_DataGrid" Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="17" CanUserResizeColumns="True" Loaded="Refresh_GrantGrid"  
                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" PreviewMouseDoubleClick="EditGrantProposal">

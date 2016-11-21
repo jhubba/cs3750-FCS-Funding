@@ -37,7 +37,7 @@
             <RowDefinition Height="39*" />
         </Grid.RowDefinitions>
         
-        <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="1" Grid.Column="0"/>
+        <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="1" Grid.Column="0" Margin="0, 0, 0, 1"/>
         
         <TextBlock Text="Search By:" FontSize="25" FontWeight="Bold" FontStretch="Expanded" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Grid.Column="0"/>
         

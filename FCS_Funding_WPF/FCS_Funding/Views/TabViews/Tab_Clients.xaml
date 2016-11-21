@@ -22,9 +22,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="39*" />
+            <RowDefinition Height="42" />
             <RowDefinition Height="39*" />
             <RowDefinition Height="39*" />
-            <RowDefinition Height="39" />
             <RowDefinition Height="39*" />
             <RowDefinition Height="39*" />
             <RowDefinition Height="39*" />
@@ -36,15 +36,21 @@
             <RowDefinition Height="40*" />
             <RowDefinition Height="39*" />
         </Grid.RowDefinitions>
-        <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="2" Grid.RowSpan="2" />
-        <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="32" Grid.ColumnSpan="2" Margin="124,7,43.8,0.2"  />
-        <ComboBox Name="combobox_Search" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="39"  Grid.Column="1" Grid.ColumnSpan="2" Margin="125,0,9.6,0.2" />
-        <TextBox Name="textbox_Search" FontSize="18" Grid.Column="3" Margin="0,0,1,0" Grid.ColumnSpan="2"/>
-        <Button Grid.Column="5" Content="Filter" Click="Refresh_ClientGrid"/>
+        
+        <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="1" Grid.Column="0" Margin="0, 0, 0, 1"/>
+        
+        <TextBlock Text="Search By:" FontSize="25" FontWeight="Bold" FontStretch="Expanded" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Grid.Column="0"/>
+        
+        <ComboBox Name="combobox_Search" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Center" Width="334" Height="39"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" />
+        
+        <TextBox Name="textbox_Search" FontSize="18" Grid.Column="3" Height="39" Margin="0,0,1,0" Grid.ColumnSpan="2"/>
+        
+        <Button Grid.Column="5" Content="Filter" Click="Refresh_ClientGrid" Height="39"/>
+        
         <!-- <Button Content="Refresh" Click="Refresh_Patients"  Grid.Column="5" Grid.Row="1" />-->
-        <DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Refresh_ClientGrid" CanUserResizeColumns="True"  
+        <DataGrid Name="PatientGrid" Grid.ColumnSpan="6" Grid.RowSpan="12" Loaded="Refresh_ClientGrid" CanUserResizeColumns="True"  
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient"
-                              Grid.Column="1" Grid.Row="2">
+                              Grid.Column="0" Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static constants:Definition.Filter_ClientOQ}" Width="110" Binding="{Binding Path=PatientOQ}"/>
                 <DataGridTextColumn Header="{x:Static constants:Definition.Filter_FirstName}" Width="110" Binding="{Binding Path=FirstName}"/>

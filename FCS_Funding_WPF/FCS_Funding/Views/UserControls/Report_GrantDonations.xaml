@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FCS_Funding.Views.UserControls"
              mc:Ignorable="d" d:DesignWidth="862" Height="505">
-    <Grid Height="505" VerticalAlignment="Top" Margin="0,0,0,-29">
+    <Grid Height="505" VerticalAlignment="Top" Margin="0,0,0,0">
         <DataGrid Name="Grant_DataGridReport" CanUserResizeColumns="True"  
                               IsReadOnly="True" CanUserDeleteRows="False" AlternationCount="2" AutoGenerateColumns="False" Margin="5,42,5,252" Loaded="Grant_DataGridReport_Loaded" SelectionChanged="Grant_DataGridReport_SelectionChanged" MouseDown="Grant_DataGridReport_MouseDown">
             <DataGrid.Columns>

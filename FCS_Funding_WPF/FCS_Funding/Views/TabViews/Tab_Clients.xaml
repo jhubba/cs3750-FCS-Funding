@@ -22,8 +22,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="39*" />
-            <RowDefinition Height="39*" />
             <RowDefinition Height="42" />
+            <RowDefinition Height="39*" />
             <RowDefinition Height="39*" />
             <RowDefinition Height="39*" />
             <RowDefinition Height="39*" />

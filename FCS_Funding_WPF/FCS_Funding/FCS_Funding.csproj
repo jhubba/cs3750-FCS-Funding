@@ -62,7 +62,9 @@
       <HintPath>..\packages\Select.HtmlToPdf.2.4.0.1\lib\net40\Select.HtmlToPdf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -90,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CommonControl.cs" />
+    <Compile Include="DBService\demographicsService.cs" />
     <Compile Include="Definition.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Donation.cs" />
@@ -148,6 +151,7 @@
     <Compile Include="Models\View_IndividualSessionCount.cs" />
     <Compile Include="Models\View_NewPatientByDoctor.cs" />
     <Compile Include="Models\View_OnGoingPatientByDoctor.cs" />
+    <Compile Include="Reports\DemographicsReportHelper.cs" />
     <Compile Include="Views\AddGroupSession.xaml.cs">
       <DependentUpon>AddGroupSession.xaml</DependentUpon>
     </Compile>

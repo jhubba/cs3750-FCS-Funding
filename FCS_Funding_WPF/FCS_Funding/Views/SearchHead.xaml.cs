@@ -32,19 +32,13 @@ namespace FCS_Funding.Views
         {
             FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
 
-            var headID = (from p in db.Patients 
-                          join PatientHousehold
-                          on db.PatientHouseholds
-                          where p.PatientLastName.Equals(LastName)
-                          select new Patient
-                          {
-                              PatientFirstName = p.PatientFirstName,
-                              HouseHoldID = p.HouseholdID
-                          }
-        );
+            var headID = (from p in db.Patients
+
+                          where p.PatientLastName.Equals(LastName) && p.IsHead == true
+                          select p );
             var list2 = new ObservableCollection<Patient>(headID);
             return list2;
         }
-       
+       // wpf tutorial use datagrid with radio buttons.
     }
 }

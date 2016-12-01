@@ -33,5 +33,25 @@ namespace FCS_Funding.Views.Windows
         {
             this.Close();
         }
+
+        private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            CommonControl.IntepretEnterAsTab(sender, e);
+        }
+
+        private void check_UpdateHousehold_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Change_UpdateHousehold(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void txt_NumberOnlyCheck(object sender, TextCompositionEventArgs e)
+        {
+            CommonControl.NumberOnlyEventCheckNoPeriod(sender, e);
+        }
     }
 }

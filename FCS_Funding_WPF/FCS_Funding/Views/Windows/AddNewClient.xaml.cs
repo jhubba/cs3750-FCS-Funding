@@ -39,6 +39,8 @@ namespace FCS_Funding.Views.Windows
         public int HouseholdPopulation { get; set; }
         public string County { get; set; }
 
+        public string searchName { get; set; }
+
         public AddNewClient()
         {
 
@@ -60,17 +62,7 @@ namespace FCS_Funding.Views.Windows
             {
                 MessageBox.Show("Please enter a valid Client Creation date");
             }
-            Debug.WriteLine("!Test " + GenerateOQ());
-            Debug.WriteLine("!Test " + firstName);
-            Debug.WriteLine("!Test " + lastName);
-            Debug.WriteLine("!Test " + PatientGender);
-            Debug.WriteLine("!Test " + ClientIntakeDateTime);
-            Debug.WriteLine("!Test " + Income);
-            Debug.WriteLine("!Test " + HouseholdPopulation);
-            Debug.WriteLine("!Test " + County);
-            Debug.WriteLine("!Test " + ageGroup);
-            Debug.WriteLine("!Test " + ethnicGroup);
-
+            
             if (firstName == null || lastName == null || PatientGender == null || ClientIntakeDateTime == null || ageGroup == null || ethnicGroup == null)
             {
                 dataValid = false;
@@ -114,7 +106,12 @@ namespace FCS_Funding.Views.Windows
                 
         private void button_SearchHeadOfHousehold_Click(object sender, RoutedEventArgs e)
         {
-
+       
+            if (searchName != null)
+            {
+              // code to be added later 
+               
+            }
         }
 
         private void txt_NumberOnlyCheck(object sender, TextCompositionEventArgs e)

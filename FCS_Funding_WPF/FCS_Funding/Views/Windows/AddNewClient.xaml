@@ -84,7 +84,7 @@
                     </Border>
                     <TextBlock Text="Relation to Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="11" Grid.Column="1" Margin="0,5" />
                     <Border Grid.Row="11" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="textbox_RelationToHead"  FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}"  KeyDown="useEnterAsTab" TabIndex="8" />
+                        <TextBox Name="textbox_RelationToHead"  FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}"  KeyDown="useEnterAsTab" TabIndex="8" IsEnabled="False"/>
                     </Border>
                     <TextBlock Text="Gender:  " TextAlignment="Right"  FontSize="18" Grid.Row="5" Grid.Column="1" Margin="0,5" />
                     <ComboBox Name="combobox_Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
@@ -132,10 +132,10 @@
                     <TextBlock Text="Search for Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="13" Grid.Column="1" Margin="0,5" />
 
                     <Border Grid.Row="13" Grid.Column="2"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="textbox_SearchHead" FontSize="18" KeyDown="useEnterAsTab" />
+                        <TextBox Name="textbox_SearchHead" FontSize="18" KeyDown="useEnterAsTab" Text="{Binding searchName, ElementName=ThisWindow}" />
                     </Border>
 
-                    <Button Name="button_SearchHeadOfHousehold" Grid.Column="2" Grid.Row="14" FontSize="18" Content="Search" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,5" Click="button_SearchHeadOfHousehold_Click"/>
+                    <Button Name="button_SearchHeadOfHousehold" Grid.Column="2" Grid.Row="14" FontSize="18" Content="Search" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,9,0,0" Click="button_SearchHeadOfHousehold_Click" VerticalAlignment="Top"/>
 
                     <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="5,0,0,0"
 		  VerticalAlignment="Top" Height="236" Width="352" Grid.ColumnSpan="2" Grid.RowSpan="6" Grid.Column="3" Grid.Row="3" TabIndex="11">

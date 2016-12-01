@@ -126,8 +126,7 @@
                         <TextBox Name="textbox_SearchHead" FontSize="18" KeyDown="useEnterAsTab" />
                     </Border>
 
-                    <Button Name="button_SearchHeadOfHousehold" Grid.Column="4" Grid.Row="3" FontSize="18" Content="Search" Width="100" Height="30" HorizontalAlignment="Left" Margin="5,5" Click="button_SearchHeadOfHousehold_Click"/>
-
+                   
                     <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="5,0,0,0"
 		  VerticalAlignment="Top" Height="236" Width="352" Grid.ColumnSpan="2" Grid.RowSpan="6" Grid.Column="3" Grid.Row="5" TabIndex="11">
                         <GroupBox.Resources>
@@ -161,7 +160,7 @@
                         </UniformGrid>
                     </GroupBox>
 
-                    <CheckBox Name="check_UpdateHousehold" Grid.Column="4" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_UpdateHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="3016">
+                    <CheckBox Name="check_UpdateHousehold" Grid.Column="4" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_UpdateHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="3016" Checked="check_UpdateHousehold_Checked">
                         <TextBlock Name="block_UpdateHousehold" Text="Update Household" FontSize="18" />
                     </CheckBox>
                     

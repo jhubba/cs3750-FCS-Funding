@@ -20,6 +20,8 @@ namespace FCS_Funding.Views.UserControls
     {
         private string toPrint;
         private System.Windows.Controls.Button btn;
+        private bool boardBtn = true;
+        private bool fundingBtn = false;
 
         public List<DBService.PatientProblem> problemTotalList = new List<DBService.PatientProblem>();
 
@@ -58,6 +60,17 @@ namespace FCS_Funding.Views.UserControls
                 var listOfAllKnownProblems = demoService.getAllKnownProblems();
 
                 int[] arrayOfProblemCounts = new int[20];
+
+                //todo if board report
+                if (boardBtn)
+                {
+                    //get count of each funding type
+                }
+                else
+                {
+                    //FINDS ALL GRANT PROPOSALS
+                    //var listOfAllKnownFundingGP = demoService.getAllKnownGrantProposals();
+                }
 
                 //GET A LIST OF ALL FUNDING TYPES FOR REPORT GENERATION
                 //FINDS ALL DONORS/DONATIONS NOT PART OF A GRANT
@@ -104,7 +117,6 @@ namespace FCS_Funding.Views.UserControls
 
                 //get pdf doc
                 showPdf();
-                EnableButton(true, "Generate Report");
             }
             else
             {
@@ -892,6 +904,7 @@ namespace FCS_Funding.Views.UserControls
             {
                 System.Windows.MessageBox.Show("Install a PDF reader and make it your default");
             }
+            EnableButton(true, "Generate Report");
         }
 
         private void EnableButton(bool enabled, string content)
@@ -963,6 +976,18 @@ namespace FCS_Funding.Views.UserControls
                 demographicsReportFrom_datepicker.SelectedDate.GetValueOrDefault() != DateTime.MinValue &&
                 demographicsReportTo_datepicker.SelectedDate != null &&
                 demographicsReportTo_datepicker.SelectedDate.GetValueOrDefault() != DateTime.MinValue;
+        }
+
+        private void RadioBtnChecked(object sender, RoutedEventArgs e)
+        {
+            if (sender.Equals(boardReportbtn))
+            {
+                boardBtn = true;
+            }
+            else
+            {
+                fundingBtn = false;
+            }
         }
     }
 }

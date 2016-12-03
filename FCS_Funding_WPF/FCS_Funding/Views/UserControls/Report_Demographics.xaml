@@ -8,7 +8,7 @@
              d:DesignHeight="606" d:DesignWidth="862" Loaded="UserControl_Loaded" >
 
     <Grid x:Name="Individual" Margin="0,0,0,10">
-        <Button x:Name="demographicsReport_button" Content="Generate Report" HorizontalAlignment="Left" Margin="681,122,0,0" VerticalAlignment="Top" Width="167" Click="button_Click" RenderTransformOrigin="1.578,0.545" FontSize="18.667"/>
+        <Button x:Name="demographicsReport_button" Content="Generate Report" HorizontalAlignment="Left" Margin="658,194,0,0" VerticalAlignment="Top" Width="189" Click="button_Click" RenderTransformOrigin="1.578,0.545" FontSize="18.667"/>
         <DatePicker x:Name="demographicsReportFrom_datepicker" HorizontalAlignment="Left" Margin="681,29,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166"/>
         <DatePicker x:Name="demographicsReportTo_datepicker" HorizontalAlignment="Left" Margin="681,77,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166"/>
         <Label x:Name="label" Content="Demographics Report" HorizontalAlignment="Left" Margin="1,12,0,0" VerticalAlignment="Top" FontSize="32"/>
@@ -71,7 +71,7 @@
         <Label x:Name="label1_Copy8" Content="End Date" HorizontalAlignment="Left" Margin="582,77,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="1.297,0.252" Width="94"/>
         <Separator HorizontalAlignment="Left" Height="24" Margin="10,64,0,0" VerticalAlignment="Top" Width="514"/>
         <Separator HorizontalAlignment="Left" Height="24" Margin="12,106,0,0" VerticalAlignment="Top" Width="514"/>
-        <Label x:Name="label1_Copy9" Content="Funding Source" HorizontalAlignment="Left" Margin="572,265,0,0" VerticalAlignment="Top" FontSize="18.667" FontWeight="Bold" Width="147" RenderTransformOrigin="0.5,0.5">
+        <Label x:Name="label1_Copy9" Content="Funding Source" HorizontalAlignment="Left" Margin="565,285,0,0" VerticalAlignment="Top" FontSize="18.667" FontWeight="Bold" Width="147" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -81,7 +81,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="label1_Copy10" Content="Problem Types" HorizontalAlignment="Left" Margin="574,436,0,0" VerticalAlignment="Top" FontSize="18.667" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Width="140">
+        <Label x:Name="label1_Copy10" Content="Problem Types" HorizontalAlignment="Left" Margin="570,440,0,0" VerticalAlignment="Top" FontSize="18.667" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Width="140">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -91,16 +91,17 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <ListBox x:Name="reportDemoFundingSource_listbox" HorizontalAlignment="Left" Height="150" Margin="657,210,0,0" VerticalAlignment="Top" Width="190"  DisplayMemberPath="fundingSource" SelectionMode="Single" SelectedValuePath="fundingSourceID"/>
-        <ListBox x:Name="reportDemoProblems_listbox" HorizontalAlignment="Left" Height="150" Margin="658,380,0,0" VerticalAlignment="Top" Width="190" DisplayMemberPath="problemType" SelectionMode="Single" SelectedValuePath="problemID"/>
+        <ListBox x:Name="reportDemoFundingSource_listbox" HorizontalAlignment="Left" Height="140" Margin="657,230,0,0" VerticalAlignment="Top" Width="190"  DisplayMemberPath="fundingSource" SelectionMode="Single" SelectedValuePath="fundingSourceID"/>
+        <ListBox x:Name="reportDemoProblems_listbox" HorizontalAlignment="Left" Height="140" Margin="658,390,0,0" VerticalAlignment="Top" Width="190" DisplayMemberPath="problemType" SelectionMode="Single" SelectedValuePath="problemID"/>
         <ComboBox x:Name="locationComboBox" HorizontalAlignment="Left" Margin="437,36,0,0" VerticalAlignment="Top" Width="120" IsEditable="True">
             <ComboBoxItem Content="Ogden" IsSelected="True"/>
         </ComboBox>
         <Label x:Name="label1_Copy11" Content="Location" HorizontalAlignment="Left" Margin="353,29,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="1.297,0.252" Width="79"/>
-        <StackPanel x:Name="rBtnPanel" HorizontalAlignment="Left" Height="40" Margin="681,160,0,0" VerticalAlignment="Top" Width="166" Orientation="Vertical">
+        <StackPanel x:Name="rBtnPanel" HorizontalAlignment="Left" Height="35" Margin="681,145,0,0" VerticalAlignment="Top" Width="166" Orientation="Vertical">
             <RadioButton x:Name="boardReportbtn" Content="Board Report" Margin="0, 0, 0, 0" IsChecked="True" Checked="RadioBtnChecked"/>
             <RadioButton x:Name="fundingSrcbtn" Content="Funding Sources" Margin="0, 0, 0, 0" Checked="RadioBtnChecked"/>
         </StackPanel>
+        <Label x:Name="reportTypeLabel" Content="Report Type" FontSize="18.667" FontWeight="Bold" HorizontalAlignment="Left" Margin="676,110,0,0" VerticalAlignment="Top" Width="171" Height="35"/>
 
     </Grid>
 </UserControl>

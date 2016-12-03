@@ -106,6 +106,38 @@ namespace FCS_Funding.DBService
             return list;
         }
 
+        //get count of funding type Insurance
+        public int getInsuranceTypeCount()
+        {
+            return (from it in db.GrantProposals.AsEnumerable()
+                    where it.GrantClass == "Insurance"
+                    select it.GrantProposalID).Count();
+        }
+
+        //get count of funding type EAP
+        public int getEAPTypeCount()
+        {
+            return (from it in db.GrantProposals.AsEnumerable()
+                    where it.GrantClass == "EAP"
+                    select it.GrantProposalID).Count();
+        }
+
+        //get count of funging type Grant
+        public int getGrantTypeCount()
+        {
+            return (from it in db.GrantProposals.AsEnumerable()
+                    where it.GrantClass == "Grant"
+                    select it.GrantProposalID).Count();
+        }
+
+        //get count of funding type Other
+        public int getOtherTypeCount()
+        {
+            return (from it in db.GrantProposals.AsEnumerable()
+                    where it.GrantClass == "Other"
+                    select it.GrantProposalID).Count();
+        }
+
         public IQueryable<PatientProblem> getAllKnownProblems()
         {
             var list = (from pr in db.Problems

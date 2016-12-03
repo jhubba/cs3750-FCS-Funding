@@ -61,17 +61,6 @@ namespace FCS_Funding.Views.UserControls
 
                 int[] arrayOfProblemCounts = new int[20];
 
-                //todo if board report
-                if (boardBtn)
-                {
-                    //get count of each funding type
-                }
-                else
-                {
-                    //FINDS ALL GRANT PROPOSALS
-                    //var listOfAllKnownFundingGP = demoService.getAllKnownGrantProposals();
-                }
-
                 //GET A LIST OF ALL FUNDING TYPES FOR REPORT GENERATION
                 //FINDS ALL DONORS/DONATIONS NOT PART OF A GRANT
                 var listOfAllKnownFunding = demoService.getDonorsNotPartOfGrant();
@@ -89,6 +78,12 @@ namespace FCS_Funding.Views.UserControls
                     //arrayOfFundingCounts[x,1] = 0;
                     x++;
                 }
+
+                //todo get count of each funding type
+                var insuranceTypeCount = demoService.getInsuranceTypeCount();
+                var eapTypeCount = demoService.getEAPTypeCount();
+                var grantTypeCount = demoService.getGrantTypeCount();
+                var otherTypeCount = demoService.getOtherTypeCount();
 
                 int[] arrayOfCancellations = new int[3];
 

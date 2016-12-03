@@ -243,6 +243,11 @@ namespace FCS_Funding.Reports
         public int[] arrayOfCancellations { get; set; }
         public int[,] arrayOfFundingCounts { get; set; }
         public int[] arrayOfProblemCounts { get; set; }
+        //funding type counts
+        public int insuranceTypeCount { get; set; }
+        public int eapTypeCount { get; set; }
+        public int grantTypeCount { get; set; }
+        public int otherTypeCount { get; set; }
 
         public string demographicsString => "<!DOCTYPE html>"
                 + "<html>"

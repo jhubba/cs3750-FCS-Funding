@@ -20,8 +20,7 @@ namespace FCS_Funding.Views.UserControls
     {
         private string toPrint;
         private System.Windows.Controls.Button btn;
-        private bool boardBtn = true;
-        private bool fundingBtn = false;
+        private bool boardBtnSelected = true;
 
         public List<DBService.PatientProblem> problemTotalList = new List<DBService.PatientProblem>();
 
@@ -79,11 +78,8 @@ namespace FCS_Funding.Views.UserControls
                     x++;
                 }
 
-                //todo get count of each funding type
-                var insuranceTypeCount = demoService.getInsuranceTypeCount();
-                var eapTypeCount = demoService.getEAPTypeCount();
-                var grantTypeCount = demoService.getGrantTypeCount();
-                var otherTypeCount = demoService.getOtherTypeCount();
+                //Get counts for each type of grant proposal
+                var listOfFundingTypeCounts = demoService.GetFundingTypeCounts();
 
                 int[] arrayOfCancellations = new int[3];
 
@@ -106,9 +102,10 @@ namespace FCS_Funding.Views.UserControls
                 demoHelper.arrayOfCancellations = arrayOfCancellations;
                 demoHelper.arrayOfFundingCounts = arrayOfFundingCounts;
                 demoHelper.arrayOfProblemCounts = arrayOfProblemCounts;
+                demoHelper.listOfFundingTypeCounts = listOfFundingTypeCounts;
 
-                //Generate Report String From Helper
-                toPrint = demoHelper.generateReportString();
+                //generate string based on chosen report
+                toPrint = boardBtnSelected ? demoHelper.generateBoardReportString() : demoHelper.generateReportString();
 
                 //get pdf doc
                 showPdf();
@@ -975,14 +972,7 @@ namespace FCS_Funding.Views.UserControls
 
         private void RadioBtnChecked(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals(boardReportbtn))
-            {
-                boardBtn = true;
-            }
-            else
-            {
-                fundingBtn = false;
-            }
+            boardBtnSelected = sender.Equals(boardReportbtn);
         }
     }
 }

@@ -107,35 +107,27 @@ namespace FCS_Funding.DBService
         }
 
         //get count of funding type Insurance
-        public int getInsuranceTypeCount()
+        public List<FundingType> GetFundingTypeCounts()
         {
-            return (from it in db.GrantProposals.AsEnumerable()
-                    where it.GrantClass == "Insurance"
-                    select it.GrantProposalID).Count();
-        }
+            List<FundingType> list = new List<FundingType>();
 
-        //get count of funding type EAP
-        public int getEAPTypeCount()
-        {
-            return (from it in db.GrantProposals.AsEnumerable()
-                    where it.GrantClass == "EAP"
-                    select it.GrantProposalID).Count();
-        }
+            for (var i = 0; i < Enum.GetNames(typeof(fundingTypes)).Length; i++)
+            {
+                FundingType ft = new FundingType();
+                //type
+                var funType = Enum.GetName(typeof(fundingTypes), i);
+                //count for type
+                var count = (from it in db.GrantProposals.AsEnumerable()
+                             where it.GrantClass == funType
+                             select it.GrantProposalID).Count();
 
-        //get count of funging type Grant
-        public int getGrantTypeCount()
-        {
-            return (from it in db.GrantProposals.AsEnumerable()
-                    where it.GrantClass == "Grant"
-                    select it.GrantProposalID).Count();
-        }
+                ft.fundingType = funType;
+                ft.typeCount = count;
 
-        //get count of funding type Other
-        public int getOtherTypeCount()
-        {
-            return (from it in db.GrantProposals.AsEnumerable()
-                    where it.GrantClass == "Other"
-                    select it.GrantProposalID).Count();
+                list.Add(ft);
+            }
+
+            return list;
         }
 
         public IQueryable<PatientProblem> getAllKnownProblems()
@@ -164,6 +156,14 @@ namespace FCS_Funding.DBService
 
 
         private FCS_DBModel db { get; set; }
+
+        public enum fundingTypes
+        {
+            Insurance,
+            EAP,
+            Grant,
+            Other
+        };
     }
 
     #region HELPER CLASSES
@@ -218,6 +218,12 @@ namespace FCS_Funding.DBService
     {
         public int fundingSourceID { get; set; }
         public string fundingSource { get; set; }
+    }
+
+    public class FundingType
+    {
+        public string fundingType { get; set; }
+        public int typeCount { get; set; }
     }
     #endregion
 

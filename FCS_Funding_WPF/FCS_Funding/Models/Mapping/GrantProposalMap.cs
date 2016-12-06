@@ -26,6 +26,7 @@ namespace FCS_Funding.Models.Mapping
             this.Property(t => t.GrantName).HasColumnName("GrantName");
             this.Property(t => t.SubmissionDueDate).HasColumnName("SubmissionDueDate");
             this.Property(t => t.GrantStatus).HasColumnName("GrantStatus");
+            this.Property(t => t.GrantClass).HasColumnName("GrantClass");
 
             // Relationships
             this.HasRequired(t => t.Donor)

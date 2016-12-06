@@ -68,7 +68,7 @@
                 </Style>
             </TabControl.Resources>
             <TabItem Header="Donors" Name="donorTab" Background="Gray">
-                <Grid Margin="0,3,0,-3">
+                <Grid Margin="-1,3,-2,-3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -86,13 +86,15 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="167*"/>
-                        <ColumnDefinition Width="33*" />
-                        <ColumnDefinition Width="134*"/>
-                        <ColumnDefinition Width="167*"/>
-                        <ColumnDefinition Width="120*"/>
-                        <ColumnDefinition Width="48*" />
-                        <ColumnDefinition Width="167*"/>
+                        <ColumnDefinition Width="76*"/>
+                        <ColumnDefinition Width="18*"/>
+                        <ColumnDefinition Width="110*"/>
+                        <ColumnDefinition Width="40*" />
+                        <ColumnDefinition Width="163*"/>
+                        <ColumnDefinition Width="204*"/>
+                        <ColumnDefinition Width="146*"/>
+                        <ColumnDefinition Width="59*" />
+                        <ColumnDefinition Width="204*"/>
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock Grid.Column="0" Grid.Row="0" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                                 <ComboBox Name="DonorSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Grid.Row="0" Grid.Column="1" >
@@ -109,8 +111,8 @@
                                 <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />-->
 
                     <!-- added the margins so that it would fit like the other windows-->
-                    <DataGrid Name="Donor_DataGrid" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Refresh_DonorGrid"  AutoGenerateColumns="False" 
-                                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonor" Margin="-2, -5 , -2, 0">
+                    <DataGrid Name="Donor_DataGrid" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Refresh_DonorGrid"  AutoGenerateColumns="False" 
+                                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonor" Margin="-2,-5,-1.484,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="First Name" Width="*" Binding="{Binding Path=DonorFirstName}"/>
                             <DataGridTextColumn Header="Last Name" Width="*" Binding="{Binding Path=DonorLastName}"/>
@@ -128,7 +130,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Donations" Name="donationTab" Background="Gray">
-                <Grid>
+                <Grid Margin="-3,-3,-4,-3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -145,20 +147,21 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="29*"/>
-                        <ColumnDefinition Width="56*"/>
-                        <ColumnDefinition Width="116*"/>
-                        <ColumnDefinition Width="201*"/>
-                        <ColumnDefinition Width="201*"/>
-                        <ColumnDefinition Width="201*"/>
-                        <ColumnDefinition Width="201*"/>
+                        <ColumnDefinition Width="39*"/>
+                        <ColumnDefinition Width="166*"/>
+                        <ColumnDefinition Width="40*" />
+                        <ColumnDefinition Width="164*"/>
+                        <ColumnDefinition Width="205*"/>
+                        <ColumnDefinition Width="147*"/>
+                        <ColumnDefinition Width="59*" />
+                        <ColumnDefinition Width="205*"/>
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock Grid.Column="0" Grid.Row="0" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                                 <ComboBox Name="DonationSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Grid.Row="0" Grid.ColumnSpan="2" Margin="176,10,37.6,1.2" >
                                 </ComboBox>
                                 <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />
                                 <Button Grid.Column="4" Grid.Row="0" Content="Filter"  />-->
-                    <DataGrid Name="Donation_DataGrid" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Refresh_DonationGrid"  AutoGenerateColumns="False" Margin="0,0,0.571,0"
+                    <DataGrid Name="Donation_DataGrid" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="13" CanUserResizeColumns="True" Loaded="Refresh_DonationGrid"  AutoGenerateColumns="False" Margin="0,0,1.149,0"
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Donation ID" Width="*" Binding="{Binding Path=DonationID}"/>

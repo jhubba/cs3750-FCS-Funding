@@ -21,15 +21,18 @@ namespace FCS_Funding.Views.Windows
 	using System.Windows.Controls.Primitives;
 	using Definition;
 	using FCS_DataTesting;
-	/// <summary>
-	/// Interaction logic for CreateNewPatient.xaml
-	/// </summary>
-	public class ProbCheckBoxModel
+    /// <summary>
+    /// Interaction logic for CreateNewPatient.xaml
+    /// </summary>
+    /// 
+
+/*
+    public class ProbCheckBoxModel
 	{
 		int PatientID { get; set; }
 		int ProblemID { get; set; }
 	}
-
+    */
 	/// <summary>
 	/// Interaction logic for Window_Client.xaml
 	/// </summary>
@@ -49,10 +52,10 @@ namespace FCS_Funding.Views.Windows
 		private string Income { get; set; }
 		public int HouseholdPopulation { get; set; }
 		public string County { get; set; }
-
-		private string ageGroup { get; set; }
+        private string ageGroup { get; set; }
 		private string ethnicGroup { get; set; }
 
+      
 		//helper variables
 		List<ProbCheckBoxModel> problemItems = new List<ProbCheckBoxModel>();
 
@@ -66,17 +69,20 @@ namespace FCS_Funding.Views.Windows
 			HouseholdPopulation = 1;
 			FCS_DBModel db = new FCS_DBModel();
 
+            
 			//	For only adding clients
 			if (editPatient == null)
 			{
 				InitializeComponent();
-				check_UpdateHousehold.Visibility = Visibility.Hidden;
+                check_UpdateHousehold.Visibility = Visibility.Hidden;
 				check_ChangeHousehold.Visibility = Visibility.Hidden;
 				button_DeleteClient.Visibility = Visibility.Hidden;
 				tab_UpdateClient.IsSelected = true;
-				tab_UpdateClient.Visibility = Visibility.Collapsed;
+                textbox_RelationToHead.IsEnabled = false;
+                textbox_SearchHead.IsEnabled = false;
+                tab_UpdateClient.Visibility = Visibility.Collapsed;
 				tab_ClientSessions.Visibility = Visibility.Collapsed;
-
+                
 				button_CancelClient.SetValue(Grid.ColumnProperty, 3);
 
 				//	Add Client button stuff
@@ -117,13 +123,16 @@ namespace FCS_Funding.Views.Windows
 				patientOQ = editPatient.PatientOQ;
 				patientID = editPatient.PatientID;
 
-				InitializeComponent();
+               
+                InitializeComponent();
+               
 
-				//	Hide those UI items that shouldn't exist
-				textbox_FamilyMemberOQ.IsEnabled = false;
+                //	Hide those UI items that shouldn't exist
+                textbox_FamilyMemberOQ.IsEnabled = false;
 				textbox_ClientOQ.IsEnabled = false;
+                textbox_RelationToHead.IsEnabled = false;
 
-				check_FirstHouseholdMember.Visibility = Visibility.Hidden;
+                check_FirstHouseholdMember.Visibility = Visibility.Hidden;
 			
 			//	Manually set the rest of the data to be displayed
 				if (editPatient.IsHead)
@@ -171,6 +180,8 @@ namespace FCS_Funding.Views.Windows
 			Problem tempProblem = new Problem();
 			FCS_DBModel db = new FCS_DBModel();
 
+            
+
 			//	Check to see if the OQ number is already taken
 			try
 			{
@@ -193,7 +204,7 @@ namespace FCS_Funding.Views.Windows
             try
             {
 				//	Check to see if there needs to be a new household made first
-				if ((bool)check_FirstHouseholdMember.IsChecked)
+				if ((bool)radio_Head.IsChecked)
 				{
 					Income = combobox_IncomeBracket.Text;
 					County = combobox_County.Text;
@@ -209,6 +220,7 @@ namespace FCS_Funding.Views.Windows
 				}
 				else
 				{
+                    /*
 					try
 					{
 						tempPatient.HouseholdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
@@ -218,6 +230,7 @@ namespace FCS_Funding.Views.Windows
 						MessageBox.Show("The provided Family OQ Number does not exist. Please double-check the Family OQ Number.", "Family OQ Number Doesn't Exist", MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
+                    */
 				}
 
 				bool isHeadOfHouse = (bool)check_HeadOfHousehold.IsChecked;
@@ -627,16 +640,18 @@ namespace FCS_Funding.Views.Windows
 		{
 			try
 			{
-				if (textblock_Title.Text == "Add New Client")
+				if (radio_Head.IsChecked == true)
 				{
 					if (checkForPatientTextEntry() && checkForHeadOfHouseEntry() && checkForHouseholdEntryAddPatient())
 					{
 						int.Parse(textbox_HouseholdPopulation.Text);
 
+                        /*
 						if (!(bool)check_FirstHouseholdMember.IsChecked)
 						{
 							int.Parse(textbox_FamilyMemberOQ.Text);
 						}
+                        */
 
 						button_AddUpdateClient.IsEnabled = true;
 						return;
@@ -667,13 +682,13 @@ namespace FCS_Funding.Views.Windows
 
 			private bool checkForHeadOfHouseEntry()
 			{
-				return ((bool)check_HeadOfHousehold.IsChecked || !string.IsNullOrEmpty(textbox_RelationToHead.Text)) ? true : false;
+				return ((bool)radio_Head.IsChecked || !string.IsNullOrEmpty(textbox_RelationToHead.Text)) ? true : false;
 			}
 
 			private bool checkForHouseholdEntryAddPatient()
 			{
-					return (((bool)check_FirstHouseholdMember.IsChecked && !string.IsNullOrEmpty(textbox_HouseholdPopulation.Text))
-						|| !string.IsNullOrEmpty(textbox_FamilyMemberOQ.Text)) ? true : false;
+            return ((bool)radio_Head.IsChecked && !string.IsNullOrEmpty(textbox_HouseholdPopulation.Text));
+						//|| !string.IsNullOrEmpty(textbox_FamilyMemberOQ.Text)) ? true : false;
 			}
 
 			private bool checkForChangeHouseholdEntryEditPatient()
@@ -695,5 +710,31 @@ namespace FCS_Funding.Views.Windows
 		{
 			CommonControl.IntepretEnterAsTab(sender, e);
 		}
-	}
+
+        private void button_SearchHeadOfHousehold_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void radio_isHead_Checked(object sender, RoutedEventArgs e)
+        {
+            var rb = sender as RadioButton;
+            if (rb.Name.Equals("radio_Dependent"))
+            {
+                textbox_RelationToHead.IsEnabled = true;
+                textbox_SearchHead.IsEnabled= true;
+            }
+
+            if (rb.Name.Equals("radio_Head"))
+            {
+                textbox_RelationToHead.IsEnabled = false;
+                textbox_SearchHead.IsEnabled = false;
+                textbox_HouseholdPopulation.IsEnabled = true;
+                combobox_County.IsEnabled = true;
+                combobox_IncomeBracket.IsEnabled = true;
+                headOfHouse = true;
+                CheckForValidInput(sender, null);
+            }
+        }
+    }
 }

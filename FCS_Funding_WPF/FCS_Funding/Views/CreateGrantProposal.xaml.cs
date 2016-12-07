@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,20 @@ namespace FCS_Funding.Views
     public partial class CreateGrantProposal : Window
     {
         public string GrantName { get; set; }
+
+        public string Classification { get; set; }
+       
+        //private IEnumerable<string> classifications = new List<string>
+        //{
+        //    "Insurance", "EAP", "Grant", "Other"
+        //};
+        //public IEnumerable<string> Classifications
+        //{
+        //    get
+        //    {
+        //        return classifications;
+        //    }
+        //}
 
         public CreateGrantProposal()
         {
@@ -43,10 +58,12 @@ namespace FCS_Funding.Views
 
         private void Create_Grant_Proposal(object sender, RoutedEventArgs e)
         {
-            if (SubmissionDueDate.ToString() != "" && Organization.SelectedValue != null && GrantName != null && GrantName != "")
+            if (SubmissionDueDate.ToString() != "" && Organization.SelectedValue != null && ClassificationCmbx.SelectedValue != null && !string.IsNullOrEmpty(GrantName))
             {
+                determineClass(ClassificationCmbx.SelectedIndex);
                 string organiz = Organization.SelectedValue.ToString();
                 DateTime datet = Convert.ToDateTime(SubmissionDueDate.ToString());
+                string classification = ClassificationCmbx.SelectedValue.ToString();
 
                 //MessageBox.Show(organiz + "\n" + datet + "\n" + GrantName + "\n" + "Status is Pending");
                 Models.FCS_DBModel db = new Models.FCS_DBModel();
@@ -60,6 +77,7 @@ namespace FCS_Funding.Views
                 gp.GrantName = GrantName;
                 gp.SubmissionDueDate = datet;
                 gp.GrantStatus = "Pending";
+                gp.GrantClass = Classification;
 
                 db.GrantProposals.Add(gp);
                 db.SaveChanges();
@@ -68,7 +86,7 @@ namespace FCS_Funding.Views
             }
             else
             {
-                MessageBox.Show("Select a date");
+                MessageBox.Show("All fields must be filled");
             }
 
         }
@@ -77,5 +95,25 @@ namespace FCS_Funding.Views
 		{
 			CommonControl.IntepretEnterAsTab(sender, e);
 		}
-	}
+
+        private void determineClass(int selection)
+        {
+            switch (selection)
+            {
+                case 0:
+                    Classification = "Insurance";
+                    break;
+                case 1:
+                    Classification = "EAP";
+                    break;
+                case 2:
+                    Classification = "Grant";
+                    break;
+                case 3:
+                    Classification = "Other";
+                    break;
+
+            }
+        }
+    }
 }

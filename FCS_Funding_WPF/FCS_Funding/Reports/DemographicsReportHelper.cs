@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FCS_Funding.Views.UserControls;
 
 namespace FCS_Funding.Reports
 {
     class DemographicsReportHelper
     {
-
         public DemographicsReportHelper()
         {
             ageTotals = new int[8];
@@ -17,6 +17,203 @@ namespace FCS_Funding.Reports
             totalIncome = new int[5];
             totalCounty = new int[6];
             staffName = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBName;       
+        }
+
+        public string generateBoardReportString()
+        {
+            totalMinutesofService = totalMinutesofService + totalMinutesofClientService;
+            totalMinutesofClientService = 0; //Reset for next client.
+
+            int totalPatients = newPatients + ongoingPatients;
+            double totalHoursofService = totalMinutesofService / 60;
+
+
+            string toPrint = "<!DOCTYPE html>"
+                          + "<html>"
+                          + "<head>"
+                          + " <style>"
+                          + "     header nav, footer {"
+                          + "         display: none;"
+                          + "     }"
+                          + "     body {"
+                          + "         font-size:10pt;"
+                          + "         margin: 0;"
+                          + "     }"
+                          + "</style>"
+                          + "</head>"
+                          + "<body>"
+                          + "<div style='position:relative;' id='wrap'>"
+                          +
+                          "    <div style='color:#000000;font-size:18pt;position:relative;left:25px;top:20px;'>Demographic Report</div>"
+                          + "    <div style='color:#000000;position:absolute;left:25px;top:80px;'>Staff Name: " +
+                          staffName + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:560px;top:80px;'>Location: " +
+                          location + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:25px;top:105px;'>New: " + newPatients +
+                          "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:225px;top:105px;'>Ongoing: " +
+                          ongoingPatients + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:425px;top:105px;'>Total Clients: " +
+                          totalPatients + "</div>"
+                          +
+                          "    <div style='color:#000000;position:absolute;left:25px;top:130px;'>Individual Sessions: " +
+                          individualSessions + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:225px;top:130px;'>Family Sessions: " +
+                          familySessions + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:425px;top:130px;'>Group Sessions: " +
+                          groupSessions + "</div>"
+                          +
+                          "    <div style='color:#000000;position:absolute;left:25px;top:155px;'>Head of household</div>"
+                          + "    <div style='color:#000000;position:absolute;left:225px;top:155px;'>M: " + hoHMaleCount +
+                          "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:325px;top:155px;'>F: " +
+                          hoHFemaleCount + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:425px;top:155px;'>Total Families: " +
+                          hoHTotalFamiles + "</div>"
+                          +
+                          "    <div style='color:#000000;position:absolute;left:25px;top:180px;'># Individuals in the household: " +
+                          hoHIndividuals + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:600px;top:105px;'>LtCxl: " +
+                          arrayOfCancellations[0] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:600px;top:130px;'>Cxl: " +
+                          arrayOfCancellations[1] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:600px;top:155px;'>No Show: " +
+                          arrayOfCancellations[2] + "</div>"
+                          +
+                          "    <div style='color:#000000;position:absolute;left:25px;top:205px;'>Total Hours of service: " +
+                          totalHoursofService + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:25px;top:235px;'>Age:</div>"
+                          + "    <div style='color:#000000;position:absolute;left:150px;top:235px;'>1. 0-5: " +
+                          ageTotals[0] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:300px;top:235px;'>2. 6-11: " +
+                          ageTotals[1] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:450px;top:235px;'>3. 12-17: " +
+                          ageTotals[2] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:600px;top:235px;'>4. 18-23: " +
+                          ageTotals[3] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:150px;top:255px;'>5. 24-44: " +
+                          ageTotals[4] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:300px;top:255px;'>6. 45-54: " +
+                          ageTotals[5] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:450px;top:255px;'>7. 55-69: " +
+                          ageTotals[6] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:600px;top:255px;'>8. 70+: " +
+                          ageTotals[7] + "</div>"
+                          +
+                          "    <div style='color:#000000;position:absolute;left:25px;top:295px;'>Gender of Client</div>"
+                          + "    <div style='color:#000000;position:absolute;left:225px;top:295px;'>M: " + totalMales +
+                          "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:325px;top:295px;'>F: " + totalFemales +
+                          "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:25px;top:320px;'>Ethnicity</div>"
+                          +
+                          "    <div style='color:#000000;position:absolute;left:150px;top:320px;'>1. African American: " +
+                          totalEthnicity[0] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:340px;top:320px;'>2. Natice/Alaskan: " +
+                          totalEthnicity[1] + "</div>"
+                          +
+                          "    <div style='color:#000000;position:absolute;left:510px;top:320px;'>3. Pacific Islander: " +
+                          totalEthnicity[2] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:700px;top:320px;'>4. Asian: " +
+                          totalEthnicity[3] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:150px;top:340px;'>5. Caucasian: " +
+                          totalEthnicity[4] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:340px;top:340px;'>6. Hispanic: " +
+                          totalEthnicity[5] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:510px;top:340px;'>7. Other: " +
+                          totalEthnicity[6] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:25px;top:380px;'>Income</div>"
+                          + "    <div style='color:#000000;position:absolute;left:150px;top:380px;'>1. $0-9,999: " +
+                          totalIncome[0] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:300px;top:380px;'>2. $10,000-14,999: " +
+                          totalIncome[1] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:450px;top:380px;'>3. $15,000-24,999: " +
+                          totalIncome[2] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:600px;top:380px;'>4. $25,000-34,999: " +
+                          totalIncome[3] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:150px;top:400px;'>5. $35,000+: " +
+                          totalIncome[4] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:25px;top:425px;'>County:</div>"
+                          + "    <div style='color:#000000;position:absolute;left:125px;top:425px;'>1. Weber: " +
+                          totalCounty[0] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:250px;top:425px;'>2. Davis: " +
+                          totalCounty[1] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:375px;top:425px;'>3. DCLC: " +
+                          totalCounty[2] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:500px;top:425px;'>4. Morgan: " +
+                          totalCounty[3] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:625px;top:425px;'>5. Box Elder: " +
+                          totalCounty[4] + "</div>"
+                          + "    <div style='color:#000000;position:absolute;left:770px;top:425px;'>6. Other: " +
+                          totalCounty[5] + "</div>";
+            
+            String toPrintFunding =
+                "    <div style='color:#000000;position:absolute;left:25px;top:455px;'>Funding Source:</div>";
+            int fCount = 0;
+            int xLoc = 25;
+            int yLoc = 475;
+            int totalCount = 1;
+            foreach (var ft in listOfFundingTypeCounts)
+            {
+                toPrintFunding += "    <div style='color:#000000;position:absolute;left:" + xLoc + "px;top:" + yLoc +
+                                  "px;'>" + totalCount + ". " + ft.fundingType + ": " +
+                                  ft.typeCount + "</div>";
+                if (fCount <= 2)
+                {
+                    xLoc += 200;
+                    fCount++;
+                }
+                else
+                {
+                    yLoc += 20;
+                    xLoc = 25;
+                    fCount = 0;
+                }
+                totalCount++;
+            }
+
+            yLoc += 40;
+            String toPrinProblems = "     <div style='color:#000000;position:absolute;left:25px;top:" + yLoc +
+                                    "px; '>Problem:</div>";
+            int pCount = 1;
+            totalCount = 1;
+            xLoc = 45;
+            yLoc += 20;
+            foreach (var pr in listOfAllKnownProblems)
+            {
+                toPrinProblems += "    <div style='color:#000000;position:absolute;left:" + xLoc + "px;top:" + yLoc +
+                                  "px;'>" + totalCount + ". " + pr.problemType + ": " +
+                                  arrayOfProblemCounts[pr.problemID] + "</div>";
+                if (pCount <= 3) // 3 per row
+                {
+                    if (pCount == 1)
+                    {
+                        xLoc += 195;
+                    }
+                    else if (pCount == 2)
+                    {
+                        xLoc += 235;
+                    }
+                    else
+                    {
+                        xLoc += 210;
+                    }
+                    pCount++;
+                }
+                else
+                {
+                    yLoc += 20;
+                    xLoc = 45;
+                    pCount = 1;
+                }
+                totalCount++;
+
+            }
+            toPrint += toPrintFunding + toPrinProblems;
+            toPrint += "</body>"
+                       + "</html>";
+
+            return toPrint;
         }
 
         public string generateReportString()
@@ -243,6 +440,8 @@ namespace FCS_Funding.Reports
         public int[] arrayOfCancellations { get; set; }
         public int[,] arrayOfFundingCounts { get; set; }
         public int[] arrayOfProblemCounts { get; set; }
+        //list of funding type counts
+        public List<FundingType> listOfFundingTypeCounts { get; set; }
 
         public string demographicsString => "<!DOCTYPE html>"
                 + "<html>"

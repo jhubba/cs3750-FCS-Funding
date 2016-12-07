@@ -106,6 +106,30 @@ namespace FCS_Funding.DBService
             return list;
         }
 
+        //get count of funding type Insurance
+        public List<FundingType> GetFundingTypeCounts()
+        {
+            List<FundingType> list = new List<FundingType>();
+
+            for (var i = 0; i < Enum.GetNames(typeof(fundingTypes)).Length; i++)
+            {
+                FundingType ft = new FundingType();
+                //type
+                var funType = Enum.GetName(typeof(fundingTypes), i);
+                //count for type
+                var count = (from it in db.GrantProposals.AsEnumerable()
+                             where it.GrantClass == funType
+                             select it.GrantProposalID).Count();
+
+                ft.fundingType = funType;
+                ft.typeCount = count;
+
+                list.Add(ft);
+            }
+
+            return list;
+        }
+
         public IQueryable<PatientProblem> getAllKnownProblems()
         {
             var list = (from pr in db.Problems
@@ -132,6 +156,14 @@ namespace FCS_Funding.DBService
 
 
         private FCS_DBModel db { get; set; }
+
+        public enum fundingTypes
+        {
+            Insurance,
+            EAP,
+            Grant,
+            Other
+        };
     }
 
     #region HELPER CLASSES
@@ -186,6 +218,12 @@ namespace FCS_Funding.DBService
     {
         public int fundingSourceID { get; set; }
         public string fundingSource { get; set; }
+    }
+
+    public class FundingType
+    {
+        public string fundingType { get; set; }
+        public int typeCount { get; set; }
     }
     #endregion
 

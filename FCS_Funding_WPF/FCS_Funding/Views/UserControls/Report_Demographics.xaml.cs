@@ -20,6 +20,7 @@ namespace FCS_Funding.Views.UserControls
     {
         private string toPrint;
         private System.Windows.Controls.Button btn;
+        private bool boardBtnSelected = true;
 
         public List<DBService.PatientProblem> problemTotalList = new List<DBService.PatientProblem>();
 
@@ -77,6 +78,9 @@ namespace FCS_Funding.Views.UserControls
                     x++;
                 }
 
+                //Get counts for each type of grant proposal
+                var listOfFundingTypeCounts = demoService.GetFundingTypeCounts();
+
                 int[] arrayOfCancellations = new int[3];
 
                 //Loop through all patients pulled from database with sessions matching the dates specified by the end user
@@ -98,13 +102,13 @@ namespace FCS_Funding.Views.UserControls
                 demoHelper.arrayOfCancellations = arrayOfCancellations;
                 demoHelper.arrayOfFundingCounts = arrayOfFundingCounts;
                 demoHelper.arrayOfProblemCounts = arrayOfProblemCounts;
+                demoHelper.listOfFundingTypeCounts = listOfFundingTypeCounts;
 
-                //Generate Report String From Helper
-                toPrint = demoHelper.generateReportString();
+                //generate string based on chosen report
+                toPrint = boardBtnSelected ? demoHelper.generateBoardReportString() : demoHelper.generateReportString();
 
                 //get pdf doc
                 showPdf();
-                EnableButton(true, "Generate Report");
             }
             else
             {
@@ -892,6 +896,7 @@ namespace FCS_Funding.Views.UserControls
             {
                 System.Windows.MessageBox.Show("Install a PDF reader and make it your default");
             }
+            EnableButton(true, "Generate Report");
         }
 
         private void EnableButton(bool enabled, string content)
@@ -963,6 +968,11 @@ namespace FCS_Funding.Views.UserControls
                 demographicsReportFrom_datepicker.SelectedDate.GetValueOrDefault() != DateTime.MinValue &&
                 demographicsReportTo_datepicker.SelectedDate != null &&
                 demographicsReportTo_datepicker.SelectedDate.GetValueOrDefault() != DateTime.MinValue;
+        }
+
+        private void RadioBtnChecked(object sender, RoutedEventArgs e)
+        {
+            boardBtnSelected = sender.Equals(boardReportbtn);
         }
     }
 }

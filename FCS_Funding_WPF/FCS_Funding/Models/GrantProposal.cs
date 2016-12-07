@@ -24,6 +24,11 @@ namespace FCS_Funding.Models
         [StringLength(15)]
         public string GrantStatus { get; set; }
 
+        [Required]
+        [StringLength(15)]
+        public string GrantClass { get; set; }
+
+
         public virtual Donor Donor { get; set; }
     }
 }

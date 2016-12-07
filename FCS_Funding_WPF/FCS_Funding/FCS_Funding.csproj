@@ -234,6 +234,12 @@
       <DependentUpon>Report_GrantDonations.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewGrantProposals.xaml.cs" />
+    <Compile Include="Views\Windows\AddNewClient.xaml.cs">
+      <DependentUpon>AddNewClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\UpdateClient.xaml.cs">
+      <DependentUpon>UpdateClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\Window_Client.xaml.cs">
       <DependentUpon>Window_Client.xaml</DependentUpon>
     </Compile>
@@ -449,6 +455,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ViewGrantProposals.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\AddNewClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\UpdateClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
